@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { ServerError } from './error';
-import featureRouter from './feature/router';
+import userRouter from './users/router';
 
 const appRouter = Router();
 
-appRouter.use('/api', featureRouter);
+appRouter.use('/api/users', userRouter);
 
 appRouter.use('/isAlive', (_req, res) => {
     res.status(StatusCodes.OK).send('alive');

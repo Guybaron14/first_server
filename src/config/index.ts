@@ -8,7 +8,7 @@ const config = {
     },
     mongo: {
         uri: env.get('MONGO_URI').required().asUrlString(),
-        featureCollectionName: env.get('MONGO_FEATURE_COLLECTION_NAME').required().asString(),
+        userCollectionName: env.get('MONGO_FEATURE_COLLECTION_NAME').required().asString(),
     },
 };
 

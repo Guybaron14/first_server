@@ -11,6 +11,6 @@ services:
     environment:
       PORT: 8000
       MONGO_URI: mongodb://mongo
-      MONGO_FEATURE_COLLECTION_NAME: feature
+      MONGO_USER_COLLECTION_NAME: users
     ports:
       - 8000:8000

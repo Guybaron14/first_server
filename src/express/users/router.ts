@@ -6,8 +6,10 @@ import { createUserRequestSchema, getUserRequestSchema } from './validator.schem
 
 const userRouter: Router = Router();
 
+// scopes: get
 userRouter.get('/', ValidateRequest(getUserRequestSchema), wrapController(UserController.getUsers));
 
+// scopes: create
 userRouter.post('/', ValidateRequest(createUserRequestSchema), wrapController(UserController.createUser));
 
 export default userRouter;

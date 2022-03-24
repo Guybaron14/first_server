@@ -6,6 +6,11 @@ services:
     ports:
       - 27017:27017
 
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
   users:
     build: .
     environment:
@@ -14,3 +19,44 @@ services:
       MONGO_USER_COLLECTION_NAME: users
     ports:
       - 8000:8000
+
+  incoming-proxy-service:
+    image: registry.gitlab.com/yesodot/rnd/terminal-rabaz/shared/spike-proxy-service
+    environment:
+      MODE: incoming
+      PORT: 8001
+      SPIKE_PUBLIC_KEY_FULL_PATH: './'
+      INCOMING_SERVICES: >
+        [
+          {
+            "target": "https://172.23.80.1:9000",
+            "audience": "SuNbP8x1wZJ7RlUpBxkz6onhlFt1VD",
+            "secure": false,
+            "useBearerToken": false,
+            "routes": [
+              {
+                "route": "/api/users",
+                "method": "get",
+                "allowedScopes": [
+                  "read"
+                ]
+              },
+              {
+                "route": "/api/users",
+                "method": "post",
+                "allowedScopes": [
+                  "read"
+                ]
+              },
+              {
+                "route": "/api/users",
+                "method": "delete",
+                "allowedScopes": [
+                  "read"
+                ]
+              }
+            ]
+          }
+        ]
+    ports:
+      - 8001:8001

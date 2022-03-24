@@ -30,4 +30,10 @@ const createUserRequestSchema = Joi.object({
     params: {},
 });
 
-export { getUserRequestSchema, createUserRequestSchema };
+const deleteUserRequestSchema = Joi.object({
+    query: {},
+    body: {},
+    params: { id: Joi.string().required() },
+});
+
+export { getUserRequestSchema, createUserRequestSchema, deleteUserRequestSchema };

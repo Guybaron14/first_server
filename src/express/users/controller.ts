@@ -9,4 +9,8 @@ const createUser = async (req: Request, res: Response) => {
     res.json(await UserManager.createUser(req.body));
 };
 
-export { getUsers, createUser };
+const deleteUser = async (req: Request, res: Response) => {
+    res.json(await UserManager.deleteUser(req.params.id));
+};
+
+export { getUsers, createUser, deleteUser };

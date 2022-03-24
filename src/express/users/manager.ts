@@ -9,4 +9,8 @@ const createUser = (user: INewUser): Promise<IUser> => {
     return UserModel.create(user);
 };
 
-export { getUsers, createUser };
+const deleteUser = (userId: string) => {
+    return UserModel.findByIdAndDelete(userId);
+};
+
+export { getUsers, createUser, deleteUser };

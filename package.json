@@ -27,6 +27,7 @@
     "joi": "^17.6.0",
     "mongoose": "^6.2.3",
     "morgan": "^1.10.0",
+    "spike-auth-middleware": "^1.1.6",
     "uuid": "^8.3.2",
     "winston": "^3.6.0"
   },

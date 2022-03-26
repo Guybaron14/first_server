@@ -17,46 +17,55 @@ services:
       PORT: 8000
       MONGO_URI: mongodb://mongo
       MONGO_USER_COLLECTION_NAME: users
+    # volumes:
+    #   - asset-volume:/usr/src/app
     ports:
       - 8000:8000
 
-  incoming-proxy-service:
-    image: registry.gitlab.com/yesodot/rnd/terminal-rabaz/shared/spike-proxy-service
-    environment:
-      MODE: incoming
-      PORT: 8001
-      SPIKE_PUBLIC_KEY_FULL_PATH: './'
-      INCOMING_SERVICES: >
-        [
-          {
-            "target": "https://172.23.80.1:9000",
-            "audience": "SuNbP8x1wZJ7RlUpBxkz6onhlFt1VD",
-            "secure": false,
-            "useBearerToken": false,
-            "routes": [
-              {
-                "route": "/api/users",
-                "method": "get",
-                "allowedScopes": [
-                  "read"
-                ]
-              },
-              {
-                "route": "/api/users",
-                "method": "post",
-                "allowedScopes": [
-                  "read"
-                ]
-              },
-              {
-                "route": "/api/users",
-                "method": "delete",
-                "allowedScopes": [
-                  "read"
-                ]
-              }
-            ]
-          }
-        ]
-    ports:
-      - 8001:8001
+  # incoming-proxy-service:
+  #   image: registry.gitlab.com/yesodot/rnd/terminal-rabaz/shared/spike-proxy-service
+  #   volumes:
+  #     - asset-volume:/usr/src/app
+  #   environment:
+  #     MODE: incoming
+  #     PORT: 8000
+  #     MONGO_URI: mongodb://mongo
+  #     MONGO_USER_COLLECTION_NAME: users
+  #     SPIKE_PUBLIC_KEY_FULL_PATH: '/usr/src/app/publickey.pem'
+  #     INCOMING_SERVICES: >
+  #       [
+  #         {
+  #           "target": "http://users:8000",
+  #           "audience": "aLFUQ447znCQqVZb4daIjv9NM7CyPx",
+  #           "secure": false,
+  #           "useBearerToken": false,
+  #           "routes": [
+  #             {
+  #               "route": "/api/users",
+  #               "method": "get",
+  #               "allowedScopes": [
+  #                 "read"
+  #               ]
+  #             },
+  #             {
+  #               "route": "/api/users",
+  #               "method": "post",
+  #               "allowedScopes": [
+  #                 "create"
+  #               ]
+  #             },
+  #             {
+  #               "route": "/api/users",
+  #               "method": "delete",
+  #               "allowedScopes": [
+  #                 "delete"
+  #               ]
+  #             }
+  #           ]
+  #         }
+  #       ]
+  #   ports:
+  #     - 8001:8000
+# 
+# volumes:
+#   asset-volume:

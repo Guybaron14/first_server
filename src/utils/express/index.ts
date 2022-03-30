@@ -11,3 +11,5 @@ export const wrapMiddleware = (func: (req: Request, res: Response, next?: NextFu
 export const wrapValidator = wrapMiddleware;
 
 export const wrapController = wrapMiddleware;
+
+export const wrapSpike = wrapMiddleware;

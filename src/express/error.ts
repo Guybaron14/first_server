@@ -23,6 +23,8 @@ export const errorMiddleware = (
         serverError = error;
     } else if (error.name === 'ValidationError') {
         serverError = new ServerError(StatusCodes.BAD_REQUEST, error.message, error);
+    } else if (error.message === 'Invalid JWT scope') {
+        serverError = new ServerError(StatusCodes.UNAUTHORIZED, error.message, error);
     } else {
         serverError = new ServerError(StatusCodes.INTERNAL_SERVER_ERROR, error.message, error);
     }

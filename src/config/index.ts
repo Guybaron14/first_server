@@ -7,6 +7,7 @@ const config = {
     service: {
         port: env.get('PORT').required().asPortNumber(),
         useCors: env.get('USE_CORS').default('false').asBool(),
+        useAuthentication: env.get('USE_AUTHENTICATION').default('true').asBool(),
     },
     mongo: {
         uri: env.get('MONGO_URI').required().asUrlString(),

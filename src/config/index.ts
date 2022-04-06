@@ -23,6 +23,11 @@ const config = {
             renewalIntervalMs: env.get('SPIKE_PUBLIC_KEY_RENEWAL_INTERVAL_MS').default('0').asInt(),
         },
     },
+    shraga: {
+        URL: env.get('SHRAGA_URL').default('https://shraga.shraga.branch-yesodot.org').required().asString(),
+        secret: env.get('SHRAGA_SECRET').default('secret').required().asString(),
+        callbackURL: env.get('SHRAGA_CALLBACK_URL').default('http://localhost:8000/auth/callback').asString(),
+    },
 };
 
 export default config;

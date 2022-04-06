@@ -1,0 +1,21 @@
+version: '3.4'
+
+services:
+  mongo:
+    image: mongo
+    ports:
+      - 27017:27017
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+  users:
+    build: .
+    environment:
+      PORT: 8000
+      MONGO_URI: mongodb://mongo
+      MONGO_USER_COLLECTION_NAME: users
+    ports:
+      - 8000:8000
